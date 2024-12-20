@@ -4,7 +4,11 @@ using NaughtyAttributes;
 
 public class Configuration : Singleton<Configuration>
 {
-    [SerializeField] private SerializedDictionary<Resource, int> _startingResources;
+    [HorizontalLine(color: EColor.Yellow)]
+    [BoxGroup("Economy Settings"), SerializeField] private SerializedDictionary<Resource, int> _startingResources;
+
+    [HorizontalLine(color: EColor.Green)]
+    [BoxGroup("Entity Stats"), SerializeField] private float _entityBaseSpeed;
 
     [Button(enabledMode: EButtonEnableMode.Playmode)]
     public void AddMetal() => AddResource(Resource.METAL);
