@@ -1,18 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Entity), typeof(Rigidbody2D))]
 public class EntityMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Entity _entity;
+    private Rigidbody2D _rb;
+
+    private void Awake()
     {
-        
+        _entity = GetComponent<Entity>();
+        _rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Move(Vector2 movement)
     {
-        
+        _rb.linearVelocity = movement * _entity.Speed;
     }
 }
