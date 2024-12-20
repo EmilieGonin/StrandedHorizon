@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 public enum Resource
 {
@@ -9,25 +8,15 @@ public enum Resource
     MED_PLANT
 }
 
-public class EconomyService : MonoBehaviour
+public class EconomyService : Singleton<EconomyService>
 {
-    public static EconomyService Instance { get; private set; }
-
     private Dictionary<Resource, int> _resources;
 
     public int GetResource(Resource resource) => _resources[resource];
 
-    private void Awake()
+    protected override void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
-        DontDestroyOnLoad(this);
-
+        base.Awake();
         InitResources();
     }
 
@@ -39,5 +28,10 @@ public class EconomyService : MonoBehaviour
         {
             _resources.Add(resource, 0);
         }
+    }
+
+    public void AddResource(Resource resource, int value)
+    {
+        _resources[resource] += value;
     }
 }
