@@ -1,6 +1,7 @@
+using AYellowpaper.SerializedCollections;
 using UnityEngine;
 
 public class Configuration : MonoBehaviour
 {
-    [SerializeField] private int _startingMetal;
+    [SerializeField] private SerializedDictionary<Resource, int> _startingResources;
 }
